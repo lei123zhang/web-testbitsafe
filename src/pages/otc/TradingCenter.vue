@@ -1,0 +1,85 @@
+<template>
+    <div class="content-wrap">
+        <div class="ww">
+            <div class="container" id="List">
+                <Row>
+                    <Col span="4">
+                    <div class="leftmenu">
+                        <router-link to="/editad" style="line-height: 40px;display: block;margin: 10px;">
+                            <Button class="adv" type="primary" size="large" style="padding: 7px 25px;">
+                                发布广告
+                            </Button>
+                        </router-link>
+                        <ul class="nav nav-pills nav-stacked">
+                            <span class="leftmenu-title leftmenu-folding top" data-folding="trademenu1">
+                                <i class="lefticon icon1"></i>
+                                GCC交易
+                            </span>
+                            <li class="">
+                                <router-link to="/tradingcenter/coin1buy">我要买入</router-link>
+                            </li>
+                            <li class="">
+                                <router-link to="/tradingcenter/coin1sell">我要卖出</router-link>
+                            </li>
+                        </ul>
+                    </div>
+                    </Col>
+                    <Col span="20">
+                    <!-- <keep-alive> -->
+                    <router-view></router-view>
+                    <!-- </keep-alive> -->
+                    </Col>
+                </Row>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+// import trademenu from '../components/trademenu'
+export default {
+    components: {
+        // trademenu
+    },
+    data() {
+        return {
+        }
+    },
+    methods: {
+        // getId() {
+        //     // console.log(event.currentTarget.id)
+        //     this.tradeWay = event.currentTarget.id
+        // },
+        init() {
+            this.$http.post(this.host+this.api.otc.coin).then(response=>{
+                // console.log(response.body);
+            });
+        },
+    },
+    created: function() {
+        this.init();
+    },
+
+}
+</script>
+<style scoped>
+.icon1 {
+    background: url('../../assets/img/gcc.png') no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+.icon2 {
+    background: url('../../assets/img/usdt.png') no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+.content-wrap {
+    min-height: 750px;
+}
+
+.container {
+
+    padding-top: 30px;
+    margin: 0 auto;
+}
+</style>
+
